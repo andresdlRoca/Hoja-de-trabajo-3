@@ -1,9 +1,15 @@
+/**
+*@author Pedro Arriola 20188
+*@author Esteban Aldana 20591
+*@author Andrés de la Roca 20332
+*/
 import java.util.Arrays;
 import java.io.*;
 import java.util.*;
+import java.util.Comparable;
 
 
-public class Sorting implements Comparable<Integer>{
+public class Sorting implements Comparable<T>{
 
   /**
   *
@@ -41,26 +47,26 @@ public class Sorting implements Comparable<Integer>{
   */
   public void merge(int arr[], int l, int m, int r)
     {
-        // Find sizes of two subarrays to be merged
+        // Encontrar los tamaños de los dos subarray
         int n1 = m - l + 1;
         int n2 = r - m;
  
-        /* Create temp arrays */
+        /* Crear Arrays*/
         int L[] = new int[n1];
         int R[] = new int[n2];
  
-        /*Copy data to temp arrays*/
+        /*Copiar data a Arrays*/
         for (int i = 0; i < n1; ++i)
             L[i] = arr[l + i];
         for (int j = 0; j < n2; ++j)
             R[j] = arr[m + 1 + j];
  
-        /* Merge the temp arrays */
+        /* Partir Arrays*/
  
-        // Initial indexes of first and second subarrays
+        // IInicializar index de ambos subarrays
         int i = 0, j = 0;
  
-        // Initial index of merged subarry array
+        // IInicializar index de array partido
         int k = l;
         while (i < n1 && j < n2) {
             if (L[i] <= R[j]) {
@@ -74,23 +80,21 @@ public class Sorting implements Comparable<Integer>{
             k++;
         }
  
-        /* Copy remaining elements of L[] if any */
+        /* Copiar elementos de L[] si es que hay */
         while (i < n1) {
             arr[k] = L[i];
             i++;
             k++;
         }
  
-        /* Copy remaining elements of R[] if any */
+        /* Copiar elementos de R[] si es que hay */
         while (j < n2) {
             arr[k] = R[j];
             j++;
             k++;
         }
     }
- 
-    // Main function that sorts arr[l..r] using
-    // merge()
+
     /**
     *
     *@param arr[]
@@ -100,14 +104,14 @@ public class Sorting implements Comparable<Integer>{
     public void sort(int arr[], int l, int r)
     {
         if (l < r) {
-            // Find the middle point
+            // Encontrar punto medio
             int m =l+ (r-l)/2;
  
-            // Sort first and second halves
+            // Ordenar primera y segunda mitad
             sort(arr, l, m);
             sort(arr, m + 1, r);
  
-            // Merge the sorted halves
+            // partir los arrays ordenados
             merge(arr, l, m, r);
         }
     }
@@ -119,37 +123,48 @@ public class Sorting implements Comparable<Integer>{
   *@param der
   */
  public static void quicksort(int A[], int izq, int der) {
- 
-  int pivote=A[izq]; // tomamos primer elemento como pivote
-  int i=izq;         // i realiza la búsqueda de izquierda a derecha
-  int j=der;         // j realiza la búsqueda de derecha a izquierda
+  // tomamos primer elemento como pivote
+  int pivote=A[izq]; 
+  // i realiza la búsqueda de izquierda a derecha
+  int i=izq;
+  // j realiza la búsqueda de derecha a izquierda        
+  int j=der;         
   int aux;
  
-  while(i < j){                          // mientras no se crucen las búsquedas                                   
-     while(A[i] <= pivote && i < j) i++; // busca elemento mayor que pivote
-     while(A[j] > pivote) j--;           // busca elemento menor que pivote
-     if (i < j) {                        // si no se han cruzado                      
-         aux= A[i];                      // los intercambia
+ // mientras no se crucen las búsquedas
+  while(i < j){     
+     // busca elemento mayor que pivote                     
+     while(A[i] <= pivote && i < j) i++;
+     // busca elemento menor que pivote
+     while(A[j] > pivote) j--;   
+     //si no se han cruzado        
+     if (i < j) { 
+         // los intercambia
+         aux= A[i];                    
          A[i]=A[j];
          A[j]=aux;
      }
    }
    
-   A[izq]=A[j];      // se coloca el pivote en su lugar de forma que tendremos                                    
-   A[j]=pivote;      // los menores a su izquierda y los mayores a su derecha
+   // se coloca el pivote en su lugar de forma que tendremos
+   A[izq]=A[j];   
+    // los menores a su izquierda y los mayores a su derecha   
+   A[j]=pivote;     
    
    if(izq < j-1)
-      quicksort(A,izq,j-1);          // ordenamos subarray izquierdo
+      // ordenamos subarray izquierdo
+      quicksort(A,izq,j-1);         
    if(j+1 < der)
-      quicksort(A,j+1,der);          // ordenamos subarray derecho
+      // ordenamos subarray derecho
+      quicksort(A,j+1,der);          
    
 }
 
 
   /**
-  *
-  *@param arr[]
-  *@param n
+  * Funcion que se utiliza para obtener el valor mas grande de un array
+  *@param arr[] Array del que se quiere sacar el valor maximo
+  *@param n Longitud del array
   */
   public static int getMax(int arr[], int n)
     {
@@ -163,7 +178,7 @@ public class Sorting implements Comparable<Integer>{
     // A function to do counting sort of arr[] according to
     // the digit represented by exp.
     /**
-    *
+    * Funcion que se utiliza para 
     *@param arr[]
     *@param n
     *@param exp

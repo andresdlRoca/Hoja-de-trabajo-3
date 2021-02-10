@@ -6,6 +6,7 @@
 */
 import java.util.Random;
 import java.io.FileWriter;
+import java.io.IOExeption;
 
 public class Main {
   
@@ -15,17 +16,20 @@ public class Main {
   */
   public static void main(String[] args) {
 
+    try {
     Random rand = new Random();
     FileWriter writer = new FileWriter("data.txt");
     int[] array = new int[10];
 
     for(int i = 0; i < array.length; i++) {
       array[i] = rand.nextInt();
-      system.out.println(array[i])
+      System.out.println(array[i]);
       writer.write(array[i] + " ");
     }
     writer.close();
-
+    } catch (IOException e) {
+      System.err.println("El archivo no se ha encontrado")
+    }
     
     
   }
